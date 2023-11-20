@@ -1,0 +1,308 @@
+.modal, .overlay {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    position: fixed;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+}
+
+.google-loginpage-con{
+    width : 90%;
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
+    /* background-color: white; */
+    position: absolute;
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    
+  }
+  .google-loginpage-dec{
+    
+    /* width : 20vw; */
+    
+    padding : 0px 20px;
+    background-color: blue;
+    border : 1px solid grey;
+    color : white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  .google-loginpage-dec h1{
+    margin-bottom : 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .google-loginpage-dec p{
+    color : yellow;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    text-align: center;
+  }
+
+  .google-loginpage-right-con{
+    /* width : 20vw; */
+    display : flex;
+    flex-direction: column;
+    justify-content : center;
+    align-items: center;
+    /* background-color: aqua; */
+  }
+
+  .google-loginpage-form {
+    
+    display : flex;
+    flex-direction: column;
+    justify-content : space-between;
+    align-items: center;
+    /* background-color: blueviolet; */
+    padding-top : 20px;
+    /* width : 200px;
+    height : 200px; */
+  }
+  
+  .google-loginpage-form input {
+    
+    margin-bottom: 20px;
+    /* border : 0px ;
+    border-bottom : 2px solid lightblue; */
+    padding : 5px;
+  }
+  
+  .google-loginpage-form input:focus 
+  {
+    outline : none;
+  }
+  
+  .google-loginpage-form button {
+   
+    background-color: lightblue;
+    width: 100%;
+    color : black;
+    padding : 5px;
+    
+    border: 0px;
+  }
+
+  .google-loginpage-or{
+    padding : 15px;
+    font-size: 12px;
+  }
+
+  .google-login-notification{
+    
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    
+  }
+  
+  .google-login-notification p{
+    color: white;
+    background-color: rgb(189, 7, 7);
+    border-radius: 5px;
+    padding: 10px 10px;
+    
+  }
+
+  
+
+
+  @media (min-width : 475px) {
+
+    
+  }
+  
+  @media (min-width : 640px) {
+    
+    .google-loginpage-con{
+      width : 40vw;
+      display : flex;
+      flex-direction : row;
+      justify-content : center;
+      /* background-color: rgb(251, 218, 218); */
+      position: absolute;
+      
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      
+    }
+    .google-loginpage-dec{
+      
+      width : 20vw;
+      
+      padding : 0px 20px;
+      background-color: blue;
+      border : 1px solid grey;
+      color : white;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      
+      
+    }
+    
+    .google-loginpage-dec h1{
+      margin-bottom : 15px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      
+    }
+    
+    .google-loginpage-dec p{
+      color : yellow;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bolder;
+      text-align: start;
+    }
+  
+    .google-loginpage-right-con{
+      width : 20vw;
+      display : flex;
+      flex-direction: column;
+      justify-content : center;
+      align-items: center;
+      /* background-color: aqua; */
+    }
+  
+    .google-loginpage-form {
+      
+      display : flex;
+      flex-direction: column;
+      justify-content : space-between;
+      align-items: center;
+      /* background-color: blueviolet; */
+      padding-top : 20px;
+      /* width : 200px;
+      height : 200px; */
+    }
+    
+    .google-loginpage-form input {
+      
+      margin-bottom: 20px;
+      /* border : 0px ;
+      border-bottom : 2px solid orangered; */
+      padding : 5px;
+    }
+    
+    .google-loginpage-form input:focus 
+    {
+      outline : none;
+    }
+    
+    .google-loginpage-form button {
+     
+      background-color: blue;
+      width: 100%;
+      color : white;
+      padding : 5px;
+      
+      border: 0px;
+    }
+  
+    .google-loginpage-or{
+      padding : 15px;
+      font-size: 12px;
+    }
+  
+    .google-login-notification{
+      
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      
+    }
+    
+    .google-login-notification p{
+      color: white;
+      background-color: rgb(189, 7, 7);
+      border-radius: 5px;
+      padding: 10px 10px;
+      
+    }
+    
+    .google-loginpage-con{
+      width : 80vw;
+    }
+  
+    .google-loginpage-dec{
+      width : 40vw;
+    }
+
+    .google-loginpage-right-con{
+      width : 40vw;
+    }
+  }
+  
+  @media (min-width : 768px) {
+
+
+    
+    
+  }
+  
+  @media (min-width : 1024px) {
+
+    .google-loginpage-con{
+      width : 40vw;
+      padding : 1rem;
+      border: 1px solid grey;
+    }
+  
+    .google-loginpage-dec{
+      width : 30vw;
+    }
+
+    .google-loginpage-right-con{
+      width : 30vw;
+    }
+  
+  }
+  
+  @media (min-width : 1280px) {
+  
+    .google-loginpage-con{
+      width : 30vw;
+    }
+  
+    .google-loginpage-dec{
+      width : 25vw;
+    }
+
+    .google-loginpage-right-con{
+      width : 25vw;
+    }
+    
+  }
+  
+  @media (min-width : 1536px) { 
+  
+    .google-loginpage-dec{
+      padding : 20px 40px;
+    }
+
+    .google-loginpage-right-con{
+      padding : 40px;
+    }
+  
+    
+  
+  }

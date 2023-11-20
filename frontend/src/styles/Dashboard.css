@@ -1,0 +1,46 @@
+*{
+    margin : 0px;
+    padding : 0px;
+}
+
+body {
+    width : 100%;
+    background-color: azure;
+}
+
+.dashboard-container
+{
+    width : 100%;
+    /* background-color: azure; */
+    padding : 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-heading{
+    /* background-color: bisque; */
+    padding: 1rem;
+}
+
+.dashboard-welcome{
+    /* background-color: rgb(243, 255, 196); */
+    padding: 1rem;
+}
+
+.dashboard-buttons{
+    /* background-color: rgb(194, 244, 191); */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap : 1rem;
+}
+
+.searchdata-container{
+    /* background-color: rgb(244, 191, 226); */
+    padding: 1rem;
+}
+

@@ -1,0 +1,286 @@
+.signuppage-con{
+    width : 90%;
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+  
+    }
+    .signuppage-dec{
+      /* width : 20vw; */
+      
+      padding : 0px 20px;
+      background-color: rgb(251, 218, 218);
+      border : 1px solid grey;
+      color : white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+    }
+    
+    .signuppage-dec h1{
+      margin-bottom : 15px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    
+    .signuppage-dec p{
+      color : whitesmoke;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bolder;
+    }
+  
+    .signuppage-form {
+      
+      display : flex;
+      flex-direction: column;
+      justify-content : center;
+      align-items: center;
+      border : 1px solid grey;
+      padding-right : 20px;
+      padding-left : 20px;
+      padding-bottom: 20px;
+      padding-top: 25px;
+      /* width : 20vw; */
+     
+      
+    }
+    
+    .signuppage-form input {
+      
+      margin-bottom: 20px;
+      /* border : 0px ;
+      border-bottom : 2px solid blue; */
+      padding : 5px;
+      
+    }
+    
+    .signuppage-form input:focus 
+    {
+      outline : none;
+    }
+    
+    .signuppage-form button {
+     
+      background-color: lightblue;
+      width: 70%;
+      color : black;
+      padding : 5px;
+      margin-bottom: 10px;
+      border: 0px;
+    }
+  
+    .signup-notification{
+      
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      
+    }
+  
+    .signup-notification p{
+      color: white;
+      background-color: rgb(189, 7, 7);
+      border-radius: 5px;
+      padding: 10px 10px;
+    }
+  
+    .login-button
+    {
+      text-decoration: underline;
+      margin-left: 3px;
+    }
+  
+    .login-button:hover
+    {
+      color : orangered;
+      cursor: pointer;
+    }
+  
+    .signup-already
+    {
+      font-size: 12px;
+    }
+    
+    @media (min-width : 475px) {
+  
+      
+    }
+    
+    @media (min-width : 640px) {
+  
+      .signuppage-con{
+        width : 40vw;
+        display : flex;
+        flex-direction : row;
+        justify-content : center;
+        
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 4;
+      
+        }
+        .signuppage-dec{
+          width : 20vw;
+          
+          padding : 0px 20px;
+          background-color: lightblue;
+          border : 1px solid grey;
+          color : white;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          
+        }
+        
+        .signuppage-dec h1{
+          margin-bottom : 15px;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        
+        .signuppage-dec p{
+          color : whitesmoke;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: bolder;
+        }
+      
+        .signuppage-form {
+          
+          display : flex;
+          flex-direction: column;
+          justify-content : center;
+          align-items: center;
+          border : 1px solid grey;
+          padding-right : 20px;
+          padding-left : 20px;
+          padding-bottom: 20px;
+          padding-top: 25px;
+          width : 20vw;
+         
+          
+        }
+        
+        .signuppage-form input {
+          
+          margin-bottom: 20px;
+          /* border : 0px ; */
+          /* border-bottom : 2px solid blue; */
+          padding : 5px;
+          
+        }
+        
+        .signuppage-form input:focus 
+        {
+          outline : none;
+        }
+        
+        .signuppage-form button {
+         
+          background-color: lightblue;
+          width: 70%;
+          color : black;
+          padding : 5px;
+          margin-bottom: 10px;
+          border: 0px;
+        }
+      
+        .signup-notification{
+          
+          position: absolute;
+          top: 90%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 4;
+          
+        }
+      
+        .signup-notification p{
+          color: white;
+          background-color: rgb(189, 7, 7);
+          border-radius: 5px;
+          padding: 10px 10px;
+        }
+      
+        .login-button
+        {
+          text-decoration: underline;
+          margin-left: 3px;
+        }
+      
+        .login-button:hover
+        {
+          color : orangered;
+          cursor: pointer;
+        }
+      
+        .signup-already
+        {
+          font-size: 12px;
+        }
+      
+      .signuppage-con{
+        width : 70vw;
+      }
+    
+      .signuppage-dec{
+        width : 35vw;
+      }
+  
+      .signuppage-form{
+        width : 35vw;
+      }
+        
+    }
+    
+    @media (min-width : 768px) {
+  
+      
+  
+      
+      
+    }
+    
+    @media (min-width : 1024px) {
+  
+      .signuppage-con{
+        width : 50vw;
+      }
+    
+      .signuppage-dec{
+        width : 25vw;
+      }
+  
+      .signuppage-form{
+        width : 25vw;
+      }
+  
+      
+    
+    }
+    
+    @media (min-width : 1280px) {
+    
+      
+  
+      
+      
+    }
+    
+    @media (min-width : 1536px) {
+    
+      
+  
+      
+    
+      
+    
+    }
