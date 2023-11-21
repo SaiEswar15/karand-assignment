@@ -3,15 +3,16 @@ import "../styles/Signup.css";
 import {useState} from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // import { authActions } from '../store/authSlice';
-// import { apiActions } from '../store/apiSlice';
+import { apiActions } from '../store/apiSlice';
 // import { base_url } from './base';
 
 function Signup() {
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const Navigate = useNavigate();
+    const notification = useSelector((state)=>state.api.signupNotification)
 
 
     let [data, setData] = useState({
@@ -38,7 +39,19 @@ function Signup() {
         axios.post(`http://localhost:8081/api/v1/auth/signup`,data)
         .then((res)=>{
             console.log(res.data)
-            Navigate("/login")
+            if(res.data === "User Not Found" || res.data === "Invalid credentials" || res.data === 'User Already Exist' || res.data === 'Password mismatch')
+            {
+                
+                dispatch(apiActions.update(res.data))
+                setTimeout(() => {
+                    dispatch(apiActions.update(""))
+                }, 5000)
+            }
+            else
+            {
+                Navigate("/login")
+            }
+            
         })
     }
 
@@ -70,7 +83,11 @@ function Signup() {
                 </form>
             </div>
 
-            
+            {notification &&
+            <div className='signup-notification'>
+                <p>{notification}</p>
+            </div>
+            }
         </div>
   )
 }

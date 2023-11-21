@@ -1,35 +1,37 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import "../styles/SearchComponent.css"
-
+import { Button } from 'antd';
 
 function SearchComponent() {
 
 
     const searchModal = useSelector((state) => state.api.searchModal)
 
-    const downloadPDF = (searchModal) => {
+    const downloadPDF = async(searchModal) => {
         // Replace 'path/to/your/pdf.pdf' with the actual path to your PDF file
-        const pdfPath = `../../../uploads/${searchModal.proof}`;
-    
-        // Creating a temporary link element
-        const link = document.createElement('a');
-    
-        // Setting the href attribute to the PDF file path
-        link.href = pdfPath;
-    
-        // Setting the download attribute to force download
-        link.download = searchModal.proof;
-    
-        // Triggering the click event on the link
-        link.click();
-      };
+        // const pdfPath = `../../../uploads/${searchModal.proof}`;
+
+        // // Creating a temporary link element
+        // const link = document.createElement('a');
+
+        // // Setting the href attribute to the PDF file path
+        // link.href = pdfPath;
+
+        // // Setting the download attribute to force download
+        // link.download = searchModal.proof;
+
+        // // Triggering the click event on the link
+        // link.click();
+        window.open(`http://localhost:8081/api/v1/upload/file/${searchModal.proof}`)
+
+    };
 
     return (
         <div className='searchdata-container'>
             {searchModal ?
                 <div className='details-con'>
-                    <h1>Your details</h1>
+                    <p className='details-heading'>Your details</p>
                     <div className='details-col'>
                         <div className='details-col-1'>
                             <div><p>Name </p></div>
@@ -77,13 +79,15 @@ function SearchComponent() {
                             <div><p>{searchModal.reasonToEndorse}</p></div>
                             <div><p>{searchModal.witnesses}</p></div>
                             <section
-                                className='proofs-div'
+                                className='proofs-div proofs-div-col3'
                                 id="downloadIcon"
                                 style={{ cursor: 'pointer' }}
-                                onClick={()=>{downloadPDF(searchModal)}}
+                                
                             >
                                 <p>{searchModal.proof}</p>
-                                <img src="download-icon.png" alt="Download Icon" width="50" height="50" />
+                                <Button type="primary" onClick={() => { downloadPDF(searchModal) }} style={{ width: '200px' }}>
+                                    Show PDF
+                                </Button>
                             </section>
                         </div>
                     </div>

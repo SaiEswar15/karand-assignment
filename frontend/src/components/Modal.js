@@ -12,7 +12,9 @@ const EndorseModal = () => {
     const file = useSelector((state) => state.api.file)
     console.log(file, "file start")
 
-    const [isModalOpen, setIsModalOpen] = useState(false); 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const {to, text, subject, attachment} = useSelector((state) => state.api)
+
 
     const showModal = () => {
 
@@ -39,6 +41,7 @@ const EndorseModal = () => {
     const handleFileChange = async (e) => {
         const selectedFile = e.target.files[0];
         console.log(selectedFile, "point 1");
+        dispatch(apiActions.setAttachment(e.target.files[0]))
         try {
 
             const formdata = new FormData();
@@ -65,12 +68,16 @@ const EndorseModal = () => {
 
     const handleSubmit = async (values) => {
 
+        dispatch(apiActions.setTo(values.email))
+        dispatch(apiActions.setSubject(values.status))
+        dispatch(apiActions.setText(`Hello ${values.name}`))
+
         const formdata = {
             name: values.name,
             mobile: values.mobile,
             email: values.email,
-            aadhar : values.aadhar,
-            pan : values.pan,
+            aadhar: values.aadhar,
+            pan: values.pan,
             company: values.company,
             title: values.title,
             doj: values.doj,
@@ -90,6 +97,7 @@ const EndorseModal = () => {
                 .then((res) => {
                     console.log(res.data, "itemdata");
                     setIsModalOpen(false);
+                    form.resetFields();
 
                 })
 
@@ -97,7 +105,31 @@ const EndorseModal = () => {
             console.error("Adding items failed:", error);
         }
 
-        
+        const emailData = {
+            "to" : to,
+            "subject" : subject,
+            "text" : text,
+            "attachment" : attachment
+
+        };
+        // emailData.append('to', to);
+        // emailData.append('subject', subject);
+        // emailData.append('text', text);
+        // emailData.append('attachment', attachment);
+
+        console.log(emailData, emailData)
+
+        try {
+            const response = await axios.post('http://localhost:8081/api/v1/email/send-email',emailData );
+
+            if (response.ok) {
+                console.log('Email sent successfully');
+            } else {
+                console.error('Error sending email:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error sending email:', error.message);
+        }
 
 
     };
@@ -114,16 +146,17 @@ const EndorseModal = () => {
                 Endorse
             </Button>
 
-            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <Modal title="Endorse Candidate" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}>
                 <Form
                     form={form}
-
+                    className='endorse-modal'
                     labelCol={{ span: 4 }}
                     wrapperCol={{ span: 14 }}
                     layout="horizontal"
                     // disabled={componentDisabled}
                     style={{ maxWidth: 600 }}
                     onFinish={handleSubmit}
+                    
                 >
                     <Form.Item
 
@@ -234,8 +267,8 @@ const EndorseModal = () => {
                         <TextArea rows={4} placeholder="Enter details of witnesses" />
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 4, span: 14 }}>
-                        <Button type="primary" htmlType="submit">
+                    <Form.Item className = "modalbutton" wrapperCol={{ offset: 4, span: 14 }}>
+                        <Button type="primary" htmlType="submit" style={{ width: '200px' }}>
                             Submit
                         </Button>
                     </Form.Item>

@@ -9,6 +9,7 @@ import "../styles/Dashboard.css";
 function Dashboard() {
 
   let data = useSelector((state) => state.api.apiData)
+  console.log(data);
   
 
   return (
@@ -19,7 +20,7 @@ function Dashboard() {
       <div className='dashboard-welcome'>
         <h2>Hello {data.username}, Welcome to the dashboard</h2>
       </div>
-      <div className='dashboard-buttons'>
+      <div className='dashboard-buttons'> 
         <EndorseModal></EndorseModal>
         <SearchModal></SearchModal>
       </div>

@@ -6,9 +6,11 @@ const router = express.Router();
 const AuthorizationRouter = require("./AuthenticationRoutes");
 const UploadRouter = require("./UploadRoutes");
 const SearchRouter = require("./SearchRoutes")
+const EmailRouter = require("./EmailRoutes")
 
 router.use("/auth",AuthorizationRouter)
 router.use("/upload",UploadRouter)
 router.use("/search", SearchRouter)
+router.use("/email", EmailRouter)
 
 module.exports = router;

@@ -53,13 +53,15 @@ function SearchModal() {
                     console.log(res.data, "itemdata");
                     dispatch(apiActions.setSearchModal(res.data))
                     // Navigate("/dashboard")
+                    setIsModalOpen(false);
+                    form.resetFields();
                     
                 })
 
         } catch (error) {
             console.error("Getting items failed:", error);
         }
-        setIsModalOpen(false);
+        
         
     };
 
@@ -73,7 +75,7 @@ function SearchModal() {
             <Button type="primary" onClick={showModal} style={{ width: '200px' }}>
                 Search
             </Button>
-            <Modal title="Search your endorse" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <Modal title="Search your endorse" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}>
             <Form
                     form={form}
 
