@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import SearchComponent from './SearchComponent';
 import SearchModal from './SearchModal';
 import EndorseModal from './Modal';
+
 import "../styles/Dashboard.css";
 
 
@@ -23,6 +24,7 @@ function Dashboard() {
       <div className='dashboard-buttons'> 
         <EndorseModal></EndorseModal>
         <SearchModal></SearchModal>
+        
       </div>
       
       <SearchComponent></SearchComponent> 

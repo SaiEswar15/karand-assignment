@@ -29,7 +29,7 @@ const transporter = nodemailer.createTransport({
 });
 // router.use('/send-email', upload.single('attachment'),(req, res) => {
 router.use('/send-email', (req, res) => {
-    const { to, subject, text } = req.body;
+    const { to, subject, text, attachmentName, htmlCode} = req.body;
     console.log(req.body)
   
     const mailOptions = {
@@ -37,6 +37,13 @@ router.use('/send-email', (req, res) => {
       to,
       subject,
       text,
+      html : htmlCode,
+      attachments : [
+        {
+            filename : `${attachmentName}`,
+            path : `../uploads/${attachmentName}`
+        }
+      ]
     //   attachments: attachmentPath ? [{ path: attachmentPath }] : [],
     };
   

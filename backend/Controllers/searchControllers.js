@@ -5,6 +5,7 @@ const itemsSchema = require("../Models/itemsSchema");
 const search = async (req, res) => {
 
     try{
+        console.log(req.body)
         const {email,aadhar,pan} = req.body;
         console.log(req.body)
         let exist = await itemsSchema.findOne({email});

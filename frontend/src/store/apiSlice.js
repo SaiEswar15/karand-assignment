@@ -6,14 +6,17 @@ const apiSlice = createSlice({
         apiData : [],
         file : "",
         searchData : "",
-        searchModal : "",
+        searchModalData : "",
         loginNotification : "",
         signupNotification : "",
         loggedin : false,
         to : "",
         text : "",
         attachment : "",
-        subject : ""
+        subject : "",
+        newData : "",
+        email : "",
+        sendingEmail : ""
     },
     reducers : {
 
@@ -26,6 +29,7 @@ const apiSlice = createSlice({
         },
         setFile(state,action)
         {
+            console.log(action.payload, "setFile")
             return {
                 ...state,
                 file : action.payload
@@ -38,11 +42,11 @@ const apiSlice = createSlice({
                 searchData : action.payload
             }
         },
-        setSearchModal(state,action)
+        setSearchModalData(state,action)
         {
             return {
                 ...state,
-                searchModal : action.payload
+                searchModalData : action.payload
             }
         },
         updateLogin(state,action)
@@ -92,6 +96,27 @@ const apiSlice = createSlice({
             return {
                 ...state,
                 attachment : action.payload
+            }
+        },
+        addNewData(state,action)
+        {
+            return {
+                ...state,
+                newData : action.payload
+            }
+        },
+        setEmail(state,action)
+        {
+            return {
+                ...state,
+                email : action.payload
+            }
+        },
+        setSendingEmail(state,action)
+        {
+            return {
+                ...state,
+                sendingEmail : action.payload
             }
         },
 

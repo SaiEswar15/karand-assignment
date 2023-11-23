@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../styles/Signup.css";
 import {useState} from "react";
 import axios from "axios";
@@ -13,7 +13,7 @@ function Signup() {
     const dispatch = useDispatch();
     const Navigate = useNavigate();
     const notification = useSelector((state)=>state.api.signupNotification)
-
+    const email = useSelector((state)=>state.api.email)
 
     let [data, setData] = useState({
 
@@ -38,7 +38,9 @@ function Signup() {
         console.log(data);
         axios.post(`http://localhost:8081/api/v1/auth/signup`,data)
         .then((res)=>{
-            console.log(res.data)
+            console.log(res.data, "signup email")
+            console.log(res.data.email, "signup email")
+            
             if(res.data === "User Not Found" || res.data === "Invalid credentials" || res.data === 'User Already Exist' || res.data === 'Password mismatch')
             {
                 
@@ -49,10 +51,29 @@ function Signup() {
             }
             else
             {
+                dispatch(apiActions.setEmail(data.email))
+                const newData = 
+                {
+                    folderName : data.email
+                }
+
+                const newData2 = 
+                {
+                    folderName : data.email,
+                    filename : data.email,
+                    data : data
+                }
+
+                console.log(newData2)
+                axios.post(`http://localhost:8081/api/v1/create/createFolder`, newData)
+                .then(()=>{
+                    axios.post(`http://localhost:8081/api/v1/addfile/createFile`, newData2)
+                })
                 Navigate("/login")
             }
             
         })
+        
     }
 
     function moveToLoginPage()
@@ -60,7 +81,9 @@ function Signup() {
         Navigate("/login")
     }
 
-    
+    useEffect(()=>{
+
+    },[dispatch, email])
 
     
 

@@ -5,10 +5,10 @@ const itemsSchema = mongoose.Schema({
         type : String,
         required : true
     },
-    mobile : {
-        type : Number,
-        required : true
-    },
+    // mobile : {
+    //     type : Number,
+    //     required : true
+    // },
     email : {
         type : String,
         required : true
@@ -21,37 +21,37 @@ const itemsSchema = mongoose.Schema({
         type : String,
         required : true
     },
-    company: {
-        type : String,
-        required : true
-    },
-    title : {
-        type : String,
-        required : true
-    },
-    doj : {
-        type : String,
-        required : true
-    },
-    doe : {
-        type : String,
-        required : true
-    },
+    // company: {
+    //     type : String,
+    //     required : true
+    // },
+    // title : {
+    //     type : String,
+    //     required : true
+    // },
+    // doj : {
+    //     type : String,
+    //     required : true
+    // },
+    // doe : {
+    //     type : String,
+    //     required : true
+    // },
     status : {
         type : String,
         required : true
     },
-    reasonToEndorse : {
-        type : String,
-        required : true
-    },
+    // reasonToEndorse : {
+    //     type : String,
+    //     required : true
+    // },
     proof : {
         type : String
     },
-    witnesses : {
-        type : String,
-        required : true
-    },
+    // witnesses : {
+    //     type : String,
+    //     required : true
+    // },
 
 });
 
