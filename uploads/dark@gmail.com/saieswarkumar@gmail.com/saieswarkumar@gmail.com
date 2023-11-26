@@ -1,1 +1,0 @@
-{"name":"Sai Eswar","email":"saieswarkumar@gmail.com","aadhar":"7110","pan":"PAN","status":"Fired/Terminated","proof":"17007339574594-1 mid 2 dates.pdf"}

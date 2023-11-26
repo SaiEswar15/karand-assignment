@@ -22,8 +22,8 @@ const itemsUpload = async(req,res)=>{
     
     try{
         
-        const {name,email,aadhar,pan,status,proof} = req.body;
-        // const {name,mobile,email,aadhar,pan,company,title,doj,doe,status,reasonToEndorse,proof,witnesses} = req.body;
+        // const {name,email,aadhar,pan,status,proof} = req.body;
+        const {name,mobile,email,aadhar,pan,company,title,doj,doe,status,reasonToEndorse,proof,witnesses} = req.body;
 
         // let exist = await authSchema.findOne({email})
 
@@ -37,18 +37,18 @@ const itemsUpload = async(req,res)=>{
         
         let newUser = new itemsSchema({
             name,
-            // mobile,
+            mobile,
             email,
             aadhar,
             pan,
-            // company,
-            // title,
-            // doj,
-            // doe,
+            company,
+            title,
+            doj,
+            doe,
             status,
-            // reasonToEndorse,
+            reasonToEndorse,
             proof,
-            // witnesses
+            witnesses
         })
         await newUser.save();
         res.status(200).json(await itemsSchema.findOne({email : email}))

@@ -41,6 +41,7 @@ function Login() {
                 }
                 else {
                     dispatch(apiActions.addData(res.data))
+                    dispatch(apiActions.setEmail(data.email))
                     Navigate("/dashboard")
                 }
 

@@ -11,7 +11,7 @@ function SearchModal() {
 
     const searchModalData = useSelector((state)=>state.api.searchModalData)
     const [isModalOpen, setIsModalOpen] = useState(false);
-    console.log("searchModal check1")
+    console.log(searchModalData, "searchModal check1")
 
 
     const [form] = Form.useForm();
@@ -51,6 +51,7 @@ function SearchModal() {
             await axios.post("http://localhost:8081/api/v1/search/item",formdata)
                 .then((res) => {
                     console.log(res.data, "itemdata");
+                    
                     dispatch(apiActions.setSearchModalData(res.data))
                     // Navigate("/dashboard")
                     setIsModalOpen(false);

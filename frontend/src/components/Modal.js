@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
 import { useEffect } from 'react';
-// import { Button, DatePicker, Form, Input, Select } from 'antd';
-import { Button, Form, Input, Select } from 'antd';
+import { Button, DatePicker, Form, Input, Select } from 'antd';
+// import { Button, Form, Input, Select } from 'antd';
+// import { UploadOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux";
 import { apiActions } from '../store/apiSlice';
@@ -16,13 +17,14 @@ const EndorseModal = () => {
     const htmlCode = useSelector((state) => state.api.htmlCode)
     const newData = useSelector((state) => state.api.newData)
     const searchModalData = useSelector((state) => state.api.searchModalData)
-    console.log(file, "file start")
     
+    console.log(file, "file start")
+
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { to, text, subject, email} = useSelector((state) => state.api)
+    const { to, text, subject, email, attachment } = useSelector((state) => state.api)
 
 
-    const showModal = () => {
+    const showModal = () => {  
 
         setIsModalOpen(true);
     };
@@ -36,7 +38,7 @@ const EndorseModal = () => {
     };
 
 
-    // const { TextArea } = Input;
+    const { TextArea } = Input;
 
     const [form] = Form.useForm();
 
@@ -47,33 +49,17 @@ const EndorseModal = () => {
     const handleFileChange = async (e) => {
         const selectedFile = e.target.files[0];
         console.log(selectedFile, "point 1");
-        // dispatch(apiActions.setAttachment(e.target.files[0]))
-        try {
+        dispatch(apiActions.setAttachment(e.target.files[0]))
 
-            const formdata = {
-                folderName : email,
-                image: selectedFile
-            }
-            // formdata.append("image", selectedFile);
-
-            await axios.post(
-                "http://localhost:8081/api/v1/upload/file",
-                formdata,
-                {
-                    headers: { "Content-Type": "multipart/form-data" },
-                }
-            )
-                .then((res) => {
-                    console.log(res, "point2");
-                    dispatch(apiActions.setFile(res.data.filename))
-
-                })
-
-        } catch (error) {
-            console.error("Form validation failed:", error);
-        }
 
     };
+
+    // const normFile = (e) => {
+    //     if (Array.isArray(e)) {
+    //       return e;
+    //     }
+    //     return e && e.fileList;
+    //   };
 
     // const handleSubmit =(values) => {
 
@@ -184,13 +170,65 @@ const EndorseModal = () => {
             // dispatch(apiActions.setSubject(values.status));
             // dispatch(apiActions.setText(`Hello ${values.name}`));
 
+            const newData = 
+            {
+                checkingmail : email,
+                folderName : values.email
+            }
+            console.log(newData)
+
+            const create = await axios.post(`http://localhost:8081/api/v1/create/createFolderInside`, newData)
+            console.log(create.data, "createData")
+
+            const create2 = await axios.post(`http://localhost:8081/api/v1/create/createFolderOutside`, newData)
+            console.log(create2.data, "createData2")
+
+            console.log( "check1")
+
+            const formdata1 = {
+                folderName: email,
+                folderName2: values.email,
+                image: attachment
+            }
+
+            console.log(formdata1, "formdata1")
+            
+            const image = await axios.post(
+                "http://localhost:8081/api/v1/upload/file",
+                formdata1,
+                {
+                    headers: { "Content-Type": "multipart/form-data" },
+                }
+            )
+            console.log(image.data, "point2");
+            console.log(image.data.filename, "point2");
+            dispatch(apiActions.setFile(image.data.filename))
+
+            const file = image.data.filename
+
+            // const formdata = {
+            //     name: values.name,
+            //     email: values.email,
+            //     aadhar: values.aadhar,
+            //     pan: values.pan,
+            //     status: values.status,
+            //     proof: file,
+            // };
+
             const formdata = {
                 name: values.name,
+                mobile: values.mobile,
                 email: values.email,
                 aadhar: values.aadhar,
                 pan: values.pan,
+                company: values.company,
+                title: values.title,
+                doj: values.doj,
+                doe: values.doe,
                 status: values.status,
+                reasonToEndorse: values.reasonToEndorse,
                 proof: file,
+                witnesses: values.witnesses,
             };
 
             console.log(formdata, "formdata");
@@ -211,29 +249,12 @@ const EndorseModal = () => {
             console.log(newdata, "newdata");
             dispatch(apiActions.addNewData(response.data));
             dispatch(apiActions.setSendingEmail(response.data.email));
-            
-            
+
+
 
             const search = await axios.post("http://localhost:8081/api/v1/search/item", newdata)
             console.log(search.data, "searchdata");
             dispatch(apiActions.setSearchModalData(search.data))
-
-            
-
-            const newData = 
-            {
-                checkingmail : email,
-                folderName : values.email
-            }
-            console.log(newData)
-
-            const create = await axios.post(`http://localhost:8081/api/v1/create/createFolderInside`, newData)
-            console.log(create.data, "createData")
-
-            const create2 = await axios.post(`http://localhost:8081/api/v1/create/createFolderOutside`, newData)
-            console.log(create2.data, "createData2")
-
-            console.log( "check1")
 
             const sendingdata = {
                 folderName : email,
@@ -255,10 +276,9 @@ const EndorseModal = () => {
 
             const creatinguserdata2 = await axios.post(`http://localhost:8081/api/v1/addfile/createFileOutside`, sendingdata2)
             console.log(creatinguserdata2.data, "createuserData2")
-            // Convertion
-            // const componentHtml =  ReactDOMServer.renderToString(<DupSearchComponent />);
-            // console.log(componentHtml , "check2")
-            // dispatch(apiActions.setHtmlCode(componentHtml))
+
+
+            
 
             console.log(componentHtml , "check2")
 
@@ -267,7 +287,8 @@ const EndorseModal = () => {
                 subject : values.status,
                 text : `Hello ${values.name}`,
                 attachmentName: file,
-                htmlCode: componentHtml
+                folderName : email,
+                searchModal : search.data
             };
 
             console.log(emailData, "emailData");
@@ -287,7 +308,7 @@ const EndorseModal = () => {
     useEffect(() => {
 
 
-    }, [dispatch, to, subject, text, newData, searchModalData, htmlCode]);
+    }, [dispatch, to, subject, text, attachment, newData, searchModalData, htmlCode, file]);
 
 
     return (
@@ -315,13 +336,13 @@ const EndorseModal = () => {
                     >
                         <Input placeholder="Enter your name" />
                     </Form.Item>
-                    {/* <Form.Item
+                    <Form.Item
 
                         name="mobile"
                         rules={[{ required: true, message: 'Please enter your mobile' }]}
                     >
                         <Input placeholder="Enter your mobile" />
-                    </Form.Item> */}
+                    </Form.Item>
                     <Form.Item
 
                         name="email"
@@ -343,7 +364,7 @@ const EndorseModal = () => {
                     >
                         <Input type="text" placeholder="Enter PAN Number" />
                     </Form.Item>
-                    {/* <Form.Item
+                    <Form.Item
 
                         name="company"
                         rules={[{ required: true, message: 'Please enter your company name' }]}
@@ -356,9 +377,9 @@ const EndorseModal = () => {
                         rules={[{ required: true, message: 'Please enter the title' }]}
                     >
                         <Input placeholder="Title" />
-                    </Form.Item> */}
+                    </Form.Item>
 
-                    {/* <Form.Item
+                    <Form.Item
 
                         name="doj"
                         rules={[{ required: true, message: 'Date of joining' }]}
@@ -371,7 +392,7 @@ const EndorseModal = () => {
                         rules={[{ required: true, message: 'Date of ending' }]}
                     >
                         <DatePicker style={{ width: '100%' }} placeholder="Select your end date" />
-                    </Form.Item> */}
+                    </Form.Item>
                     <Form.Item
 
                         name="status"
@@ -385,13 +406,13 @@ const EndorseModal = () => {
                     </Form.Item>
 
 
-                    {/* <Form.Item
+                    <Form.Item
                         name="reasonToEndorse"
                         label="Reason"
                         rules={[{ required: true, message: 'Please provide a reason to endorse' }]}
                     >
                         <TextArea rows={4} placeholder="Enter your reason to endorse" />
-                    </Form.Item> */}
+                    </Form.Item>
 
 
                     <Form.Item
@@ -408,14 +429,30 @@ const EndorseModal = () => {
                         />
                     </Form.Item>
 
-
                     {/* <Form.Item
+                        name="proof"
+                        label="Proof"
+                        valuePropName="fileList"
+                        getValueFromEvent={normFile}
+                        rules={[{ required: true, message: 'Please provide an attachment' }]}
+                    >
+                        <Upload
+                            beforeUpload={() => false}
+                            maxCount={1}
+                            accept=".pdf"
+                        >
+                            <Button icon={<UploadOutlined />}>Upload PDF</Button>
+                        </Upload>
+                    </Form.Item> */}
+
+
+                    <Form.Item
                         name="witnesses"
                         label="Witnesses "
                         rules={[{ required: true, message: 'Please provide details of witnesses' }]}
                     >
                         <TextArea rows={4} placeholder="Enter details of witnesses" />
-                    </Form.Item> */}
+                    </Form.Item>
 
                     <Form.Item className="modalbutton" wrapperCol={{ offset: 4, span: 14 }}>
                         <Button type="primary" htmlType="submit" style={{ width: '200px' }}>

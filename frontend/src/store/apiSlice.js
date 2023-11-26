@@ -93,6 +93,7 @@ const apiSlice = createSlice({
         },
         setAttachment(state,action)
         {
+            
             return {
                 ...state,
                 attachment : action.payload

@@ -11,10 +11,12 @@ const {itemsUpload} = require("../Controllers/UploadControllers");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, '../uploads/')
+      const {folderName, folderName2} = req.body;
+      cb(null, `../uploads/${folderName}/${folderName2}`)
     },
     filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + file.originalname
+      const {folderName} = req.body
+      const uniqueSuffix = folderName + file.originalname
       cb(null, uniqueSuffix)
     }
   })

@@ -5,10 +5,10 @@ const createFolder = (req, res) => {
     const { folderName } = req.body;
     console.log(folderName)
     if (!folderName) {
-        return res.status(400).json({ error: 'Folder name is required' });
+        return res.status(400).json({ error: 'Folder name is required' });     
     }
 
-    const folderPath = path.join(__dirname, '..', '..', 'uploads', folderName);
+    const folderPath = path.join(__dirname, '..', '..', 'uploads', folderName);  
 
     // Check if the folder already exists
     if (fs.existsSync(folderPath)) {

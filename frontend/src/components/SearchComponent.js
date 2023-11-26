@@ -6,9 +6,10 @@ import { Button } from 'antd';
 function SearchComponent() {
 
 
-    const searchModal = useSelector((state) => state.api.searchModal)
+    const searchModalData = useSelector((state) => state.api.searchModalData)
+    console.log(searchModalData, "searchModal")
 
-    const downloadPDF = async(searchModal) => {
+    const downloadPDF = async(searchModalData) => {
         // Replace 'path/to/your/pdf.pdf' with the actual path to your PDF file
         // const pdfPath = `../../../uploads/${searchModal.proof}`;
 
@@ -23,13 +24,13 @@ function SearchComponent() {
 
         // // Triggering the click event on the link
         // link.click();
-        window.open(`http://localhost:8081/api/v1/upload/file/${searchModal.proof}`)
+        window.open(`http://localhost:8081/api/v1/upload/file/${searchModalData.proof}`)
 
     };
 
     return (
         <div className='searchdata-container'>
-            {searchModal ?
+            {searchModalData ?
                 <div className='details-con'>
                     <p className='details-heading'>Your details</p>
                     <div className='details-col'>
@@ -66,26 +67,26 @@ function SearchComponent() {
 
                         </div>
                         <div className='details-col-3'>
-                            <div><p>{searchModal.name}</p></div>
-                            <div><p>{searchModal.mobile}</p></div>
-                            <div><p>{searchModal.email}</p></div>
-                            <div><p>{searchModal.aadhar}</p></div>
-                            <div><p>{searchModal.pan}</p></div>
-                            <div><p>{searchModal.company}</p></div>
-                            <div><p>{searchModal.title}</p></div>
-                            <div><p>{searchModal.doj}</p></div>
-                            <div><p>{searchModal.doe}</p></div>
-                            <div><p>{searchModal.status}</p></div>
-                            <div><p>{searchModal.reasonToEndorse}</p></div>
-                            <div><p>{searchModal.witnesses}</p></div>
+                            <div><p>{searchModalData.name}</p></div>
+                            <div><p>{searchModalData.mobile}</p></div>
+                            <div><p>{searchModalData.email}</p></div>
+                            <div><p>{searchModalData.aadhar}</p></div>
+                            <div><p>{searchModalData.pan}</p></div>
+                            <div><p>{searchModalData.company}</p></div>
+                            <div><p>{searchModalData.title}</p></div>
+                            <div><p>{searchModalData.doj}</p></div>
+                            <div><p>{searchModalData.doe}</p></div>
+                            <div><p>{searchModalData.status}</p></div>
+                            <div><p>{searchModalData.reasonToEndorse}</p></div>
+                            <div><p>{searchModalData.witnesses}</p></div>
                             <section
                                 className='proofs-div proofs-div-col3'
                                 id="downloadIcon"
                                 style={{ cursor: 'pointer' }}
                                 
                             >
-                                <p>{searchModal.proof}</p>
-                                <Button type="primary" onClick={() => { downloadPDF(searchModal) }} style={{ width: '200px' }}>
+                                <p>{searchModalData.proof}</p>
+                                <Button type="primary" onClick={() => { downloadPDF(searchModalData) }} style={{ width: '200px' }}>
                                     Show PDF
                                 </Button>
                             </section>
